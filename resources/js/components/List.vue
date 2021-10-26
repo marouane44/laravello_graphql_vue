@@ -9,9 +9,9 @@
 
                   <Card :card="card" v-for="card in list.cards" :key="card.id" ></Card>
 
-<CardEditor v-if="editing"></CardEditor>
+<CardEditor v-if="editing" @closed="editing=false" ></CardEditor>
 
-<CardAddButton v-else></CardAddButton>
+<CardAddButton v-else @click="editing=true"></CardAddButton>
 
             </div>
 </template>
