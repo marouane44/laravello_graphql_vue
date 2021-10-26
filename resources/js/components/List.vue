@@ -1,0 +1,50 @@
+<template>
+          <div class="bg-gray-300 rounded-sm p-2 mr-2 list">
+                <div class="flex justify-between">
+                    <div class="text-gray-800 pl-2 pb-2 font-bold">{{ list.title }}</div>
+
+                </div>
+           
+
+
+                  <Card :card="card" v-for="card in list.cards" :key="card.id" ></Card>
+
+<CardEditor v-if="editing"></CardEditor>
+
+<CardAddButton v-else></CardAddButton>
+
+            </div>
+</template>
+
+<script>
+ import Card from './Card';
+    import CardAddButton from './CardAddButton';
+        import CardEditor from './CardEditor';
+ 
+  export default {
+      components: {
+          Card,
+          CardAddButton,
+          CardEditor
+      },
+      props: {
+          list:Object
+      },
+      data(){
+          return{
+              editing: false
+          }
+      }
+  }; 
+</script>
+
+<style lang="scss" scoped>
+
+.list{
+    width: 250px ;
+    min-width:250px
+}
+.card{
+ box-shadow: 0 1px 0  rgb(9, 30, 66 ,0.25);
+}
+</style>
