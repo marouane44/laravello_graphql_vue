@@ -11,30 +11,30 @@ import  BoardQuery  from "./../graphql/BoardWithListsAndCards.gql";
     export default {
         methods:{
             addCard(){  
-         this.$apollo.mutate({   
+  //      this.$apollo.mutate({   
 
-         mutation :CardAdd,
-           variables: { 
+  //      mutation :CardAdd,
+  //        variables: { 
 
-                listID: 1,
-                title:'added through mutation',
-                order :1,     
+  //             listID: 1,
+  //             title:'added through mutation',
+  //             order :1,     
 
-           },
+  //        },
 
-          update(store,{data :{cardAdd}})  {
-          const data = store.readQuery({
-          query:BoardQuery,
-          variables:{id:1}
-          }); 
+  //       update(store,{data :{cardAdd}})  {
+  //       const data = store.readQuery({
+  //       query:BoardQuery,
+  //       variables:{id:1}
+  //       }); 
 
-          data.board.lists.find(list => (list.id =1)).cards.push(cardAdd);
+  //       data.board.lists.find(list => (list.id =1)).cards.push(cardAdd);
 
-          store.writeQuery({query: BoardQuery ,data});
-  
-          }
+  //       store.writeQuery({query: BoardQuery ,data});
+  //
+  //       }
 
-         });
+        // });
        
 
             }

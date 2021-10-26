@@ -5717,31 +5717,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
-    addCard: function addCard() {
-      this.$apollo.mutate({
-        mutation: _graphql_CardAdd_gql__WEBPACK_IMPORTED_MODULE_0___default.a,
-        variables: {
-          listID: 1,
-          title: 'added through mutation',
-          order: 1
-        },
-        update: function update(store, _ref) {
-          var cardAdd = _ref.data.cardAdd;
-          var data = store.readQuery({
-            query: _graphql_BoardWithListsAndCards_gql__WEBPACK_IMPORTED_MODULE_1___default.a,
-            variables: {
-              id: 1
-            }
-          });
-          data.board.lists.find(function (list) {
-            return list.id = 1;
-          }).cards.push(cardAdd);
-          store.writeQuery({
-            query: _graphql_BoardWithListsAndCards_gql__WEBPACK_IMPORTED_MODULE_1___default.a,
-            data: data
-          });
-        }
-      });
+    addCard: function addCard() {//      this.$apollo.mutate({   
+      //      mutation :CardAdd,
+      //        variables: { 
+      //             listID: 1,
+      //             title:'added through mutation',
+      //             order :1,     
+      //        },
+      //       update(store,{data :{cardAdd}})  {
+      //       const data = store.readQuery({
+      //       query:BoardQuery,
+      //       variables:{id:1}
+      //       }); 
+      //       data.board.lists.find(list => (list.id =1)).cards.push(cardAdd);
+      //       store.writeQuery({query: BoardQuery ,data});
+      //
+      //       }
+      // });
     }
   }
 });
