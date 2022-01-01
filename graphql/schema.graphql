@@ -10,13 +10,25 @@ scalar DateTimeTz @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Da
 type Query {
     users: [User!]! @paginate(defaultCount: 10)
     user(id: ID @eq): User @find
-        board(id: ID! @eq): Board @find
+    board(id: ID! @eq): Board @find  
+    me: User @auth
  
 }
 
-type Mutation{ 
+type Mutation{     
 cardAdd(input: CardAddInput! @spread):Card! @create
-} 
+cardDelete(id: ID!): Card @delete @can(ability:"delete" , find:"id")
+cardUpdate(id:ID!,title: String): Card @update
+login(email: String!, password: String!): User!
+logout: User @guard
+register(
+    email: String! @rules(apply: ["required", "email","unique:users"]),
+    password:String!  @rules(apply: ["required","min:8"]) @hash,
+    name:String!  @rules(apply:["required","min:2"])
+    )
+    :User @create @event(dispatch: "Illuminate\\Auth\\Events\\Registered" ) 
+    
+} ,
 
 
 type User {    
@@ -49,6 +61,7 @@ type CardList{
     title:String!
     cards:[Card!]! @hasMany
     board:Board! @belongsTo
+    board_id: ID!
 
 
 }
@@ -61,6 +74,7 @@ type Card{
     title:String!
     list:CardList! @belongsTo
     owner:User! @belongsTo
+   
 }
 
 input CardAddInput {
